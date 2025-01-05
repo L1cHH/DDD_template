@@ -3,6 +3,8 @@ package aggregate
 import (
 	"impl_DDD/entity"
 	"impl_DDD/valueobject"
+
+	"github.com/google/uuid"
 )
 
 type Customer struct {
@@ -12,4 +14,23 @@ type Customer struct {
 	items []*entity.Item
 
 	transactions []valueobject.Transaction
+}
+
+
+
+func NewCustomer(name string, age uint) (Customer, error) {
+	if name == "" || age < 18 {
+		return Customer{}, nil
+	}
+
+	person := &entity.Person {
+		Name: name,
+		ID: uuid.New(),
+	}
+
+	return Customer{
+		person: person,
+		items: make([]*entity.Item, 0),
+		transactions: make([]valueobject.Transaction, 0),
+	}, nil
 }
