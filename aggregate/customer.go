@@ -1,10 +1,15 @@
 package aggregate
 
 import (
+	"errors"
 	"impl_DDD/entity"
 	"impl_DDD/valueobject"
 
 	"github.com/google/uuid"
+)
+
+var (
+	ErrInvalidPerson = errors.New("a customer has to have a valid name and age")
 )
 
 type Customer struct {
@@ -20,7 +25,7 @@ type Customer struct {
 
 func NewCustomer(name string, age uint) (Customer, error) {
 	if name == "" || age < 18 {
-		return Customer{}, nil
+		return Customer{}, ErrInvalidPerson
 	}
 
 	person := &entity.Person {
