@@ -1,7 +1,6 @@
 package memory
 
 import (
-	"errors"
 	"fmt"
 	aggregate "impl_DDD/aggregate/customer"
 	"impl_DDD/domain/customer"
